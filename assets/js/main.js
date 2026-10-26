@@ -529,10 +529,6 @@
       });
     }
 
-    var nl = document.getElementById("newsletter-form");
-    if (nl) nl.addEventListener("submit", function (e) {
-      e.preventDefault(); var b = nl.querySelector("button"); if (b) b.textContent = "You're in ✓";
-    });
     var y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
 
     data.site().then(applySite);
