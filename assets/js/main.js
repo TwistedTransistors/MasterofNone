@@ -428,6 +428,12 @@
       grid.removeAttribute("aria-busy");
       grid.innerHTML = res.items.length ? res.items.map(card).join("")
         : '<div class="empty">No stories match that yet. Try another word or topic.</div>';
+      // Default view (no topic, no search, first page): lead with the newest story
+      var lead = grid.querySelector(".card");
+      if (lead && !state.cat && !state.q && state.page === 1) {
+        lead.classList.add("card--feature");
+        var img = lead.querySelector("img"); if (img) img.removeAttribute("loading");
+      }
       renderPagination(res);
     }).catch(function () {
       grid.innerHTML = '<div class="empty">Stories could not be loaded. Please try again later.</div>';
