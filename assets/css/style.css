@@ -152,7 +152,8 @@ button, input { font: inherit; color: inherit; }
 .socials a { width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; color: var(--fg-muted); }
 .socials a:hover { color: var(--fg); background: var(--surface); }
 .socials svg { width: 16px; height: 16px; }
-.menu-toggle { display: none; }
+.menu-toggle, .search-toggle { display: none; }
+.header-actions .icon-btn { flex: none; }
 
 /* ---------- Hero ---------- */
 .eyebrow { display: inline-block; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
@@ -163,7 +164,7 @@ button, input { font: inherit; color: inherit; }
 .search input { flex: 1; min-width: 0; border: 0; background: transparent; height: 44px; font-size: 15px; outline: none; }
 .search input::placeholder { color: var(--fg-faint); }
 .header-search { width: 240px; max-width: none; margin: 0; padding: 0 14px; }
-.header-search input { height: 38px; font-size: 14px; }
+.header-search input { height: 40px; font-size: 14px; }
 .chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; max-width: 760px; margin: 0 auto; }
 .chips-label { width: 100%; font-size: 14px; font-weight: 700; margin-bottom: 4px; }
 
@@ -427,4 +428,18 @@ button, input { font: inherit; color: inherit; }
 @media (max-width: 640px) {
   .logo-mark { width: 26px; height: 26px; margin-right: 8px; }
   .prose blockquote { font-size: 21px; padding-left: 22px; }
+}
+
+/* ---------- Phones: search opens from a button so the header never gets crowded ---------- */
+@media (max-width: 640px) {
+  .logo { font-size: 19px; }
+  .header-actions { gap: 6px; }
+  .header-actions .icon-btn { width: 42px; height: 42px; }
+  .search-toggle { display: grid; }
+  .header-search { display: none; }
+  .header-search.is-open {
+    display: flex; position: absolute; top: 100%; left: 12px; right: 12px; width: auto; margin-top: 8px;
+    padding: 4px 14px; background: var(--card); box-shadow: var(--card-shadow); border-color: var(--line);
+  }
+  .header-search.is-open input { height: 44px; font-size: 16px; }
 }

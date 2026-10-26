@@ -744,6 +744,17 @@
     root.setAttribute("data-source", usingStrapi ? "strapi" : "local");
 
     var t = document.getElementById("theme-toggle"); if (t) t.addEventListener("click", toggleTheme);
+    // Phones: the search button opens a full-width search bar under the header
+    var st = document.getElementById("search-toggle"), sf = document.getElementById("site-search");
+    if (st && sf) {
+      var setSearch = function (open) {
+        sf.classList.toggle("is-open", open); st.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) sf.querySelector("input").focus();
+      };
+      st.addEventListener("click", function () { setSearch(!sf.classList.contains("is-open")); });
+      sf.addEventListener("keydown", function (e) { if (e.key === "Escape") { setSearch(false); st.focus(); } });
+      if (sf.querySelector("input").value) setSearch(true);
+    }
     var m = document.getElementById("menu-toggle"), nav = document.getElementById("site-navigation");
     if (m && nav) m.addEventListener("click", function () {
       var o = nav.classList.toggle("open"); m.setAttribute("aria-expanded", o ? "true" : "false");
