@@ -1,11 +1,11 @@
 # Master of None CMS (Strapi 5)
 
-The Strapi backend for the **Revision** theme in `../`. It ships with content types that match the theme and seeds sample authors, topics, articles and generic placeholder images on first start.
+The Strapi backend for the **Revision** theme in the repo root (`../`). It ships with content types that match the theme and seeds sample authors, topics, articles and generic placeholder images on first start.
 
 ## Quick start
 
 ```bash
-cd revision/cms
+cd cms
 cp .env.example .env        # then replace every "changeMe" (see below)
 npm install
 npm run develop             # http://localhost:1337/admin
@@ -29,7 +29,7 @@ node -e "console.log(require('crypto').randomBytes(16).toString('base64'))"
 
 ## Connect the theme
 
-In `revision/assets/js/config.js`:
+In `assets/js/config.js` (repo root):
 
 ```js
 window.MON_CONFIG = {
@@ -39,7 +39,7 @@ window.MON_CONFIG = {
 };
 ```
 
-Serve the theme folder (`cd revision && python3 -m http.server 8080`) and open http://localhost:8080. To try a server without editing the file, add `?strapi=http://localhost:1337` to the page URL.
+Serve the theme folder from the repo root (`python3 -m http.server 8080`) and open http://localhost:8080. To try a server without editing the file, add `?strapi=http://localhost:1337` to the page URL.
 
 If Strapi can't be reached, the theme falls back to the sample content in `assets/js/posts.js`, so the site never shows an empty page.
 
