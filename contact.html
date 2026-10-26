@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Contact — Master of None</title>
+  <meta name="description" content="Master of None: stories, build logs, and field notes from a curious generalist.">
+  <meta name="theme-color" content="#141414">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <!-- Hold the first paint until the scripts below have rendered the page (smooth page transitions) -->
+  <link rel="expect" href="#page-end" blocking="render">
+  <script>try { var t = localStorage.getItem("mon-rv-theme"); if (t) document.documentElement.setAttribute("data-theme", t); } catch (e) {}</script>
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to content</a>
+
+
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="index.html" aria-label="Master of None home">Master of None<span>.</span></a>
+
+      <nav class="nav" id="site-navigation" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <a href="index.html?cat=bombastic#posts">Bombastic</a>
+        <a href="index.html?cat=smug-mugs#posts">Smug Mugs</a>
+        <a href="index.html?cat=go-woke-go-broke#posts">Go Woke, Go Broke</a>
+      </nav>
+
+      <div class="header-actions">
+        <form class="search header-search" role="search" action="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          <label for="search-input" class="sr-only">Search stories</label>
+          <input id="search-input" name="q" type="search" placeholder="Search" autocomplete="off">
+        </form>
+        <button class="icon-btn" id="theme-toggle" type="button" aria-label="Toggle dark mode">
+          <svg class="theme-icon-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="theme-icon-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+        <button class="icon-btn menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-navigation">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <section class="section contact" aria-labelledby="contact-title">
+      <div class="container contact-wrap">
+        <div class="contact-intro">
+          <h1 id="contact-title">Contact us</h1>
+          <p>Send a news tip, flag a correction, or ask about partnering with us. We read every message and reply within a few days.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form" novalidate>
+          <div class="field">
+            <label for="cf-name">Name</label>
+            <input id="cf-name" name="name" type="text" autocomplete="name" required maxlength="100">
+            <p class="field-error" id="cf-name-error"></p>
+          </div>
+          <div class="field">
+            <label for="cf-email">Email</label>
+            <input id="cf-email" name="email" type="email" autocomplete="email" required maxlength="200">
+            <p class="field-error" id="cf-email-error"></p>
+          </div>
+          <div class="field">
+            <label for="cf-topic">What's this about?</label>
+            <select id="cf-topic" name="topic">
+              <option>General question</option>
+              <option>News tip</option>
+              <option>Correction</option>
+              <option>Partnerships &amp; advertising</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="7" required minlength="10" maxlength="5000"></textarea>
+            <p class="field-error" id="cf-message-error"></p>
+          </div>
+          <!-- Spam trap: hidden from people, bots tend to fill it in -->
+          <div class="hp" aria-hidden="true">
+            <label for="cf-website">Leave this empty</label>
+            <input id="cf-website" name="_gotcha" type="text" tabindex="-1" autocomplete="off">
+          </div>
+          <button class="btn" type="submit">Send message</button>
+          <p class="form-status" id="cf-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer" id="about">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-about">
+          <a class="logo" href="index.html">Master of None<span>.</span></a>
+          <p data-global="footerText">Stories, build logs, and field notes from people who'd rather learn a little of everything than all of one thing.</p>
+        </div>
+        <nav class="footer-links" aria-label="Footer">
+          <a href="contact.html" aria-current="page">Contact</a>
+        </nav>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span id="year">2026</span> Master of None. All rights reserved.</span>
+        <span>Made in Texas <svg class="flag" viewBox="0 0 30 20" role="img" aria-label="Texas flag"><rect width="30" height="20" fill="#fff"/><rect y="10" width="30" height="10" fill="#bf0a30"/><rect width="10" height="20" fill="#002868"/><polygon fill="#fff" points="5,6.4 5.82,8.87 8.42,8.89 6.33,10.43 7.12,12.91 5,11.4 2.88,12.91 3.67,10.43 1.58,8.89 4.18,8.87"/></svg></span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/config.js"></script>
+  <script src="assets/js/posts.js"></script>
+  <script src="assets/js/main.js"></script>
+  <div id="page-end" hidden></div>
+</body>
+</html>

@@ -16,6 +16,7 @@ No build step, no framework — plain HTML, CSS and a little JavaScript.
 ```
 index.html            # homepage
 post.html             # single story, opened as post.html?slug=<slug>
+contact.html          # contact form; set contactEndpoint in assets/js/config.js
 assets/
   css/style.css       # all styling + design tokens (colors, fonts, spacing)
   js/config.js        # Strapi URL / token / page size
@@ -32,7 +33,7 @@ cms/                  # Strapi 5 backend (optional)
 
 ## Customizing the look
 
-All colors live as CSS variables at the top of `assets/css/style.css` (`--bg`, `--fg`, `--accent`, …), with a matching dark set. Font: Manrope from Google Fonts.
+All colors live as CSS variables at the top of `assets/css/style.css` (`--bg`, `--fg`, `--accent`, …), with a matching dark set. Font: Libre Franklin from Google Fonts.
 
 ## Responsive
 

@@ -526,6 +526,59 @@
   }
 
   /* ======================================================================
+     Contact form (contact.html) → MON_CONFIG.contactEndpoint
+     ====================================================================== */
+  function initContact() {
+    var form = document.getElementById("contact-form");
+    var status = document.getElementById("cf-status");
+    var btn = form.querySelector('button[type="submit"]');
+    var MSG = {
+      name: "Please enter your name.",
+      email: "Please enter a valid email address.",
+      message: "Please write a message (at least 10 characters)."
+    };
+
+    function check(input) {
+      var err = document.getElementById(input.id + "-error");
+      var ok = input.checkValidity();
+      input.setAttribute("aria-invalid", ok ? "false" : "true");
+      if (err) { err.textContent = ok ? "" : MSG[input.name]; input.setAttribute("aria-describedby", err.id); }
+      return ok;
+    }
+    var fields = [].slice.call(form.querySelectorAll("input[required], textarea[required]"));
+    fields.forEach(function (f) {
+      f.addEventListener("blur", function () { if (f.value) check(f); });
+      f.addEventListener("input", function () { if (f.getAttribute("aria-invalid") === "true") check(f); });
+    });
+    function say(text, kind) { status.textContent = text; status.className = "form-status" + (kind ? " is-" + kind : ""); }
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var bad = fields.filter(function (f) { return !check(f); });
+      if (bad.length) { bad[0].focus(); say(""); return; }
+      if (!CFG.contactEndpoint) {
+        say("The contact form isn't connected yet. Please try again later.", "error");
+        return;
+      }
+      var body = {};
+      new FormData(form).forEach(function (v, k) { body[k] = v; });
+      btn.disabled = true; btn.textContent = "Sending…"; say("");
+      fetch(CFG.contactEndpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json", "Accept": "application/json" },
+        body: JSON.stringify(body)
+      }).then(function (res) {
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        form.reset();
+        fields.forEach(function (f) { f.removeAttribute("aria-invalid"); });
+        say("Thanks! Your message is on its way. We'll get back to you soon.", "success");
+      }).catch(function () {
+        say("Something went wrong sending your message. Please try again in a moment.", "error");
+      }).then(function () { btn.disabled = false; btn.textContent = "Send message"; });
+    });
+  }
+
+  /* ======================================================================
      Page transitions: the clicked card's image becomes the story cover
      (see "Page transitions" in style.css). Only one element may carry the
      name per page, so it is set right before leaving and right on arrival.
@@ -583,7 +636,9 @@
     var y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
 
     data.site().then(applySite);
-    if (document.getElementById("post")) initPost(); else initHome();
+    if (document.getElementById("post")) initPost();
+    else if (document.getElementById("contact-form")) initContact();
+    else initHome();
   }
   // This script sits at the end of <body>, so the page is already parsed: render
   // now, before the first paint (see rel="expect" in the page <head>), so page
