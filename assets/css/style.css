@@ -16,6 +16,9 @@
   --accent: #d9482b;
   --accent-ink: #ffffff;
   --accent-soft: #fbe7e2;
+  --card: #ffffff;
+  --chip: #f1f0ec;
+  --card-shadow: 0 1px 2px rgba(20,20,20,.05), 0 12px 32px rgba(20,20,20,.08);
   --radius-sm: 10px;
   --radius: 18px;
   --radius-lg: 28px;
@@ -38,6 +41,9 @@
   --accent: #ff6a4b;
   --accent-ink: #160b08;
   --accent-soft: #2e1914;
+  --card: #18181a;
+  --chip: #26262a;
+  --card-shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.45);
   --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
   color-scheme: dark;
 }
@@ -53,6 +59,9 @@
     --accent: #ff6a4b;
     --accent-ink: #160b08;
     --accent-soft: #2e1914;
+    --card: #18181a;
+    --chip: #26262a;
+    --card-shadow: 0 1px 2px rgba(0,0,0,.4), 0 12px 32px rgba(0,0,0,.45);
     --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.35);
     color-scheme: dark;
   }
@@ -160,20 +169,25 @@ button, input { font: inherit; color: inherit; }
 .topic-count { font-size: 12.5px; color: var(--fg-faint); }
 
 /* ---------- 4-column post grid ---------- */
-.post-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 44px 26px; }
-.card { display: flex; flex-direction: column; }
-.card-media { display: block; overflow: hidden; border-radius: var(--radius); aspect-ratio: 16 / 10; background: var(--surface); }
+.post-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px; }
+.card { display: flex; flex-direction: column; background: var(--card); border-radius: var(--radius-sm); overflow: hidden; box-shadow: var(--card-shadow); transition: transform .3s cubic-bezier(.2,.7,.2,1), box-shadow .3s; }
+.card:hover { transform: translateY(-4px); }
+.card-media { display: block; overflow: hidden; aspect-ratio: 1 / 1; background: var(--surface); }
 .card-media img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
 .card:hover .card-media img { transform: scale(1.05); }
-.card-body { padding-top: 16px; display: flex; flex-direction: column; flex: 1; }
+.card-body { padding: 26px 26px 24px; display: flex; flex-direction: column; flex: 1; }
 .card-top { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; margin-bottom: 10px; }
 .card-top .pill { padding: 4px 11px; font-size: 12px; }
 .read-time { font-size: 12.5px; color: var(--fg-faint); font-weight: 600; }
-.card-title { font-family: var(--font-display); font-size: 19px; line-height: 1.28; letter-spacing: -.02em; font-weight: 800; margin: 0 0 8px; }
+.card-title { font-family: var(--font-display); font-size: 24px; line-height: 1.25; letter-spacing: -.02em; font-weight: 600; margin: 0 0 12px; }
+.card-meta { font-size: 14px; font-weight: 600; color: var(--fg-muted); margin-bottom: 16px; }
 .card-title a { background-image: linear-gradient(currentColor, currentColor); background-size: 0 1.5px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size .35s; }
 .card:hover .card-title a { background-size: 100% 1.5px; }
-.card-excerpt { margin: 0 0 18px; color: var(--fg-muted); font-size: 14.5px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+.card-excerpt { margin: 0 0 24px; color: var(--fg-muted); font-size: 15.5px; line-height: 1.6; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
 
+.card-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 8px; }
+.card-tags .pill { border-radius: var(--radius-sm); padding: 9px 16px; font-size: 13px; letter-spacing: .04em; background: var(--chip); color: var(--fg); }
+.card-tags .pill:hover { background: var(--fg); color: var(--bg); }
 .byline { margin-top: auto; display: flex; align-items: center; gap: 10px; }
 .avatar { width: 36px; height: 36px; flex: none; border-radius: 50%; display: grid; place-items: center; font-size: 12px; font-weight: 800; color: var(--accent-ink); background: var(--accent); }
 .avatar[data-tone="1"] { background: #2f6f5e; color: #fff; }
@@ -183,11 +197,13 @@ button, input { font: inherit; color: inherit; }
 .byline-date { font-size: 12.5px; color: var(--fg-faint); line-height: 1.3; }
 
 /* Newest story on the default homepage view */
-.card--feature { grid-column: span 2; grid-row: span 2; }
-.card--feature .card-media { aspect-ratio: auto; flex: 1; min-height: 300px; }
-.card--feature .card-body { padding-top: 22px; flex: none; }
-.card--feature .card-title { font-size: clamp(26px, 2.6vw, 36px); line-height: 1.1; letter-spacing: -.035em; margin-bottom: 12px; max-width: 24ch; }
-.card--feature .card-excerpt { font-size: 17px; -webkit-line-clamp: 4; max-width: 56ch; }
+.card--feature { grid-column: 1 / -1; flex-direction: row; }
+.card--feature .card-media { flex: 0 0 50%; aspect-ratio: 4 / 3; }
+.card--feature .card-body { flex: 1; justify-content: center; padding: 48px 56px; }
+.card--feature .card-title { font-size: clamp(30px, 3.2vw, 46px); line-height: 1.08; letter-spacing: -.03em; margin-bottom: 16px; max-width: 18ch; }
+.card--feature .card-meta { font-size: 15px; margin-bottom: 20px; }
+.card--feature .card-excerpt { font-size: 18px; -webkit-line-clamp: 4; max-width: 46ch; margin-bottom: 28px; }
+.card--feature .card-tags { margin-top: 0; }
 .empty { grid-column: 1 / -1; text-align: center; padding: 48px 16px; border-radius: var(--radius); background: var(--surface); color: var(--fg-muted); }
 
 /* ---------- Pagination ---------- */
@@ -201,7 +217,7 @@ button, input { font: inherit; color: inherit; }
 
 /* ---------- Footer ---------- */
 .site-footer { border-top: 1px solid var(--line); padding: 56px 0 32px; }
-.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 40px; }
 .footer-about p { color: var(--fg-muted); margin: 14px 0 18px; max-width: 36ch; font-size: 15px; }
 .footer-about .socials { margin: 0; }
 .footer-col h3 { font-size: 13px; letter-spacing: .08em; text-transform: uppercase; margin: 6px 0 14px; color: var(--fg-faint); }
@@ -245,9 +261,8 @@ button, input { font: inherit; color: inherit; }
   .header-actions { margin-left: auto; min-width: 0; }
   .menu-toggle { display: grid; }
   .post-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .card--feature { grid-row: auto; }
-  .card--feature .card-media { flex: none; min-height: 0; aspect-ratio: 16 / 9; }
-  .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
+  .card--feature .card-body { padding: 32px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
   .footer-about { grid-column: 1 / -1; }
 }
 @media (max-width: 820px) {
@@ -258,9 +273,14 @@ button, input { font: inherit; color: inherit; }
   .topic { flex: 0 0 120px; scroll-snap-align: start; }
 }
 @media (max-width: 640px) {
-  .post-grid { grid-template-columns: 1fr; gap: 40px; }
-  .card--feature { grid-column: auto; }
+  .post-grid { grid-template-columns: 1fr; gap: 20px; }
+  .card-media { aspect-ratio: 4 / 3; }
+  .card-body { padding: 22px 20px 20px; }
+  .card-title { font-size: 22px; }
+  .card--feature { flex-direction: column; }
+  .card--feature .card-media { flex: none; }
   .card--feature .card-title { font-size: 26px; }
+  .card--feature .card-body { padding: 22px 20px 20px; }
   .card--feature .card-excerpt { font-size: 15px; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .pagination a:not([aria-current]):not(.next), .pagination .gap { display: none; }
@@ -291,3 +311,16 @@ button, input { font: inherit; color: inherit; }
 .prose figure img { border-radius: var(--radius); width: 100%; }
 .prose figcaption { font-size: 14px; color: var(--fg-faint); margin-top: 8px; text-align: center; }
 .prose a { color: var(--accent); text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Page transitions ----------
+   Same-site navigations crossfade instead of flashing a blank page (Chrome, Edge,
+   Safari 18.2+; other browsers just navigate normally). The header stays put, and
+   a story's card image grows into its cover (names are set in main.js). */
+@view-transition { navigation: auto; }
+.site-header { view-transition-name: site-header; }
+::view-transition-old(root), ::view-transition-new(root) { animation-duration: .28s; animation-timing-function: cubic-bezier(.2,.7,.2,1); }
+::view-transition-group(story-cover) { animation-duration: .45s; animation-timing-function: cubic-bezier(.2,.8,.2,1); }
+::view-transition-old(story-cover), ::view-transition-new(story-cover) { height: 100%; object-fit: cover; overflow: clip; }
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}

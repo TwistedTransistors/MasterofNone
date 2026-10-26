@@ -100,6 +100,24 @@
       "order": 7,
       "image": "topics/sport.jpg",
       "description": "Stories filed under sport."
+    },
+    {
+      "name": "Bombastic",
+      "slug": "bombastic",
+      "order": 8,
+      "description": "Stories filed under Bombastic."
+    },
+    {
+      "name": "Smug Mugs",
+      "slug": "smug-mugs",
+      "order": 9,
+      "description": "Stories filed under Smug Mugs."
+    },
+    {
+      "name": "Go Woke, Go Broke",
+      "slug": "go-woke-go-broke",
+      "order": 10,
+      "description": "Stories filed under Go Woke, Go Broke."
     }
   ],
   "articles": [

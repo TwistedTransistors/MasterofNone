@@ -298,12 +298,10 @@
           (p.cover ? '<img src="' + esc(p.cover) + '" alt="' + esc(p.coverAlt) + '" loading="lazy" width="800" height="500">' : "") +
         "</a>" +
         '<div class="card-body">' +
-          '<div class="card-top">' + catPills(p) + '<span class="read-time">' + esc(p.read) + " min read</span></div>" +
           '<h3 class="card-title"><a href="' + esc(postUrl(p.slug)) + '">' + esc(p.title) + "</a></h3>" +
+          '<div class="card-meta">' + esc(a.name) + " · " + esc(fmt(p.date)) + " · " + esc(p.read) + " min read</div>" +
           '<p class="card-excerpt">' + esc(p.excerpt) + "</p>" +
-          '<div class="byline">' + avatar(a) +
-            '<div><div class="byline-name">' + esc(a.name) + '</div><div class="byline-date">' + esc(fmt(p.date)) + "</div></div>" +
-          "</div>" +
+          '<div class="card-tags">' + catPills(p) + "</div>" +
         "</div>" +
       "</article>"
     );
@@ -369,7 +367,7 @@
   /* ======================================================================
      Homepage
      ====================================================================== */
-  var state = { q: params.get("q") || "", cat: params.get("cat") || "", page: parseInt(params.get("page") || "1", 10) || 1 };
+  var state = { q: params.get("q") || "", cat: slugify(params.get("cat") || ""), page: parseInt(params.get("page") || "1", 10) || 1 };
   var topicsCache = [];
 
   function syncUrl() {
@@ -422,12 +420,16 @@
       var t = topicsCache.filter(function (x) { return x.slug === state.cat; })[0];
       title.textContent = t ? t.name : (state.q ? "Search results" : "Latest stories");
     }
+    markActiveNav();
 
     data.posts({ q: state.q, cat: state.cat, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
       if (mine !== gridRequest) return; // a newer request superseded this one
       grid.removeAttribute("aria-busy");
       grid.innerHTML = res.items.length ? res.items.map(card).join("")
-        : '<div class="empty">No stories match that yet. Try another word or topic.</div>';
+        : '<div class="empty">' + (state.cat && !state.q
+            ? "Nothing filed here yet. Check back soon."
+            : "No stories match that yet. Try another word or topic.") +
+          ' <a class="link-arrow" href="' + esc(homeUrl("")) + '">See all stories →</a></div>';
       // Default view (no topic, no search, first page): lead with the newest story
       var lead = grid.querySelector(".card");
       if (lead && !state.cat && !state.q && state.page === 1) {
@@ -437,6 +439,15 @@
       renderPagination(res);
     }).catch(function () {
       grid.innerHTML = '<div class="empty">Stories could not be loaded. Please try again later.</div>';
+    });
+  }
+
+  // Highlight the menu link for the current section (Home when unfiltered)
+  function markActiveNav() {
+    document.querySelectorAll("#site-navigation a").forEach(function (a) {
+      var m = /[?&]cat=([^&#]+)/.exec(a.getAttribute("href"));
+      var on = m ? slugify(decodeURIComponent(m[1])) === state.cat : !state.cat;
+      if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
   }
 
@@ -515,9 +526,43 @@
   }
 
   /* ======================================================================
+     Page transitions: the clicked card's image becomes the story cover
+     (see "Page transitions" in style.css). Only one element may carry the
+     name per page, so it is set right before leaving and right on arrival.
+     ====================================================================== */
+  var COVER = "story-cover", LAST = "mon-last-story";
+  function slugOf(href) { var m = /[?&]slug=([^&#]+)/.exec(href || ""); return m ? decodeURIComponent(m[1]) : ""; }
+  function clearCoverNames() {
+    document.querySelectorAll(".card-media img, .post-cover img").forEach(function (i) { i.style.viewTransitionName = "none"; });
+  }
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest('.card a[href*="post.html"]');
+    if (!a || e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;
+    var img = a.closest(".card").querySelector(".card-media img");
+    clearCoverNames();
+    if (img) img.style.viewTransitionName = COVER;
+    try { sessionStorage.setItem(LAST, slugOf(a.getAttribute("href"))); } catch (err) {}
+  });
+  window.addEventListener("pageswap", function () {
+    // Leaving a story for anywhere else: let its cover travel back to its card
+    var cover = document.querySelector(".post-cover img");
+    if (cover && !document.querySelector('.card-media img[style*="' + COVER + '"]')) cover.style.viewTransitionName = COVER;
+  });
+  window.addEventListener("pagereveal", function (e) {
+    if (!e.viewTransition) return;
+    var cover = document.querySelector(".post-cover img");
+    if (cover) { cover.style.viewTransitionName = COVER; return; }
+    var last; try { last = sessionStorage.getItem(LAST); } catch (err) {}
+    var link = last && document.querySelector('.card a[href*="slug=' + encodeURIComponent(last) + '"]');
+    var img = link && link.closest(".card").querySelector(".card-media img");
+    if (img) img.style.viewTransitionName = COVER;
+    e.viewTransition.finished.then(clearCoverNames, clearCoverNames);
+  });
+
+  /* ======================================================================
      Boot
      ====================================================================== */
-  document.addEventListener("DOMContentLoaded", function () {
+  function boot() {
     root.setAttribute("data-source", usingStrapi ? "strapi" : "local");
 
     var t = document.getElementById("theme-toggle"); if (t) t.addEventListener("click", toggleTheme);
@@ -539,5 +584,10 @@
 
     data.site().then(applySite);
     if (document.getElementById("post")) initPost(); else initHome();
-  });
+  }
+  // This script sits at the end of <body>, so the page is already parsed: render
+  // now, before the first paint (see rel="expect" in the page <head>), so page
+  // transitions capture the finished page instead of an empty one.
+  if (document.querySelector(".site-footer")) boot();
+  else document.addEventListener("DOMContentLoaded", boot);
 })();

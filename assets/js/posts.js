@@ -1,6 +1,6 @@
 /* ==========================================================================
    Content for the "Revision" variant. Edit freely.
-   - MON_TOPICS: the 8 round tiles under "Explore trending topics"
+   - MON_TOPICS: topics and menu sections (used for filtering and headings)
    - MON_POSTS:  the post grid (4 per row, 12 per page by default)
    Images live in assets/img (generic placeholders). This file is only used
    when Strapi is not configured in assets/js/config.js.
@@ -14,7 +14,11 @@ window.MON_TOPICS = [
   { name: "Design", seed: "rv-design" },
   { name: "Workshop", seed: "rv-workshop" },
   { name: "Reading", seed: "rv-reading" },
-  { name: "Sport", seed: "rv-sport" }
+  { name: "Sport", seed: "rv-sport" },
+  // Sections in the top menu. Tag a post with one of these names in "cats" to file it there.
+  { name: "Bombastic" },
+  { name: "Smug Mugs" },
+  { name: "Go Woke, Go Broke" }
 ];
 
 window.MON_AUTHORS = {
