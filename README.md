@@ -52,3 +52,10 @@ python3 -m http.server
 It also works as-is on GitHub Pages (Settings → Pages → deploy from `main`).
 
 Images in `assets/img/` are generic, license-free placeholder artwork. Replace them with your own.
+
+## Publishing updates
+
+The pages load the CSS and JS with a version tag (`style.css?v=20261026b`). When you
+change any file in `assets/css` or `assets/js`, bump that tag in `index.html`,
+`post.html` and `contact.html` so visitors' browsers fetch the new files instead of
+showing a cached copy.

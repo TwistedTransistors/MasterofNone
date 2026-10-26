@@ -259,7 +259,6 @@
       return Promise.resolve((window.MON_TOPICS || []).map(function (t) {
         return {
           name: t.name, slug: slugify(t.name),
-          image: t.image || "assets/img/topics/" + slugify(t.name) + ".jpg",
           count: posts.filter(function (p) { return p.cats.indexOf(t.name) > -1; }).length
         };
       }));
