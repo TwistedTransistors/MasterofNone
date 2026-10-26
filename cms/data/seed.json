@@ -46,77 +46,21 @@
   ],
   "categories": [
     {
-      "name": "Technology",
-      "slug": "technology",
-      "order": 0,
-      "image": "topics/technology.jpg",
-      "description": "Stories filed under technology."
-    },
-    {
-      "name": "Travel",
-      "slug": "travel",
-      "order": 1,
-      "image": "topics/travel.jpg",
-      "description": "Stories filed under travel."
-    },
-    {
-      "name": "Business",
-      "slug": "business",
-      "order": 2,
-      "image": "topics/business.jpg",
-      "description": "Stories filed under business."
-    },
-    {
-      "name": "Startups",
-      "slug": "startups",
-      "order": 3,
-      "image": "topics/startups.jpg",
-      "description": "Stories filed under startups."
-    },
-    {
-      "name": "Design",
-      "slug": "design",
-      "order": 4,
-      "image": "topics/design.jpg",
-      "description": "Stories filed under design."
-    },
-    {
-      "name": "Workshop",
-      "slug": "workshop",
-      "order": 5,
-      "image": "topics/workshop.jpg",
-      "description": "Stories filed under workshop."
-    },
-    {
-      "name": "Reading",
-      "slug": "reading",
-      "order": 6,
-      "image": "topics/reading.jpg",
-      "description": "Stories filed under reading."
-    },
-    {
-      "name": "Sport",
-      "slug": "sport",
-      "order": 7,
-      "image": "topics/sport.jpg",
-      "description": "Stories filed under sport."
-    },
-    {
       "name": "Bombastic",
       "slug": "bombastic",
-      "order": 8,
+      "order": 0,
       "description": "Stories filed under Bombastic."
     },
     {
       "name": "Smug Mugs",
       "slug": "smug-mugs",
-      "order": 9,
+      "order": 1,
       "description": "Stories filed under Smug Mugs."
     },
     {
       "name": "Go Woke, Go Broke",
       "slug": "go-woke-go-broke",
-      "order": 10,
+      "order": 2,
       "description": "Stories filed under Go Woke, Go Broke."
     }
   ],
@@ -130,7 +74,7 @@
       "featured": true,
       "author": "eric",
       "categories": [
-        "reading"
+        "bombastic"
       ],
       "cover": "covers/learning-everything-badly.jpg",
       "content": [
@@ -201,7 +145,7 @@
       "featured": false,
       "author": "dana",
       "categories": [
-        "technology"
+        "smug-mugs"
       ],
       "cover": "covers/self-hosting-weekend.jpg",
       "content": [
@@ -272,7 +216,7 @@
       "featured": false,
       "author": "marcus",
       "categories": [
-        "workshop"
+        "go-woke-go-broke"
       ],
       "cover": "covers/first-bookshelf.jpg",
       "content": [
@@ -343,7 +287,7 @@
       "featured": false,
       "author": "priya",
       "categories": [
-        "travel"
+        "bombastic"
       ],
       "cover": "covers/two-week-rail-trip.jpg",
       "content": [
@@ -414,8 +358,7 @@
       "featured": false,
       "author": "eric",
       "categories": [
-        "startups",
-        "business"
+        "smug-mugs"
       ],
       "cover": "covers/side-project-to-revenue.jpg",
       "content": [
@@ -486,7 +429,7 @@
       "featured": false,
       "author": "marcus",
       "categories": [
-        "design"
+        "go-woke-go-broke"
       ],
       "cover": "covers/typography-for-non-designers.jpg",
       "content": [
@@ -557,7 +500,7 @@
       "featured": false,
       "author": "priya",
       "categories": [
-        "sport"
+        "bombastic"
       ],
       "cover": "covers/running-a-first-half.jpg",
       "content": [
@@ -628,7 +571,7 @@
       "featured": false,
       "author": "eric",
       "categories": [
-        "reading"
+        "smug-mugs"
       ],
       "cover": "covers/fall-reading-list.jpg",
       "content": [
@@ -699,7 +642,7 @@
       "featured": false,
       "author": "dana",
       "categories": [
-        "technology"
+        "go-woke-go-broke"
       ],
       "cover": "covers/home-network-rebuild.jpg",
       "content": [
@@ -770,7 +713,7 @@
       "featured": false,
       "author": "priya",
       "categories": [
-        "business"
+        "bombastic"
       ],
       "cover": "covers/pricing-small-services.jpg",
       "content": [
@@ -841,7 +784,7 @@
       "featured": false,
       "author": "marcus",
       "categories": [
-        "design"
+        "smug-mugs"
       ],
       "cover": "covers/sketching-every-day.jpg",
       "content": [
@@ -912,7 +855,7 @@
       "featured": false,
       "author": "eric",
       "categories": [
-        "travel"
+        "go-woke-go-broke"
       ],
       "cover": "covers/weekend-in-the-hill-country.jpg",
       "content": [

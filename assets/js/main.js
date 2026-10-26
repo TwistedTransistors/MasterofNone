@@ -46,6 +46,37 @@
     var d = new Date(String(iso).length === 10 ? iso + "T12:00:00" : iso);
     return isNaN(d) ? "" : d.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
   }
+  // "Oct 18" this year, "Oct 18, 2025" otherwise
+  function fmtShort(iso) {
+    if (!iso) return "";
+    var d = new Date(String(iso).length === 10 ? iso + "T12:00:00" : iso);
+    if (isNaN(d)) return "";
+    var o = { month: "short", day: "numeric" };
+    if (d.getFullYear() !== new Date().getFullYear()) o.year = "numeric";
+    return d.toLocaleDateString("en-US", o);
+  }
+  // Each topic gets its own color (card stripe, tags, topic rows). Unknown
+  // topics get a stable color from the fallback list.
+  var TOPIC_COLORS = { bombastic: "#d62828", "smug-mugs": "#1fa64a", "go-woke-go-broke": "#8e24aa" };
+  // Optional gradient "paint" for topics that aren't a single color
+  var TOPIC_PAINT = {
+    "go-woke-go-broke": "linear-gradient(90deg, #e53935, #fb8c00, #fdd835, #43a047, #1e88e5, #8e24aa)"
+  };
+  var TOPIC_FALLBACK = ["#2f6fdb", "#e0752d", "#2f8a57", "#7a4fe0", "#d6336c", "#1f9a8a"];
+  function topicColor(slug) {
+    slug = slug || "";
+    if (TOPIC_COLORS[slug]) return TOPIC_COLORS[slug];
+    var h = 0; for (var i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+    return TOPIC_FALLBACK[h % TOPIC_FALLBACK.length];
+  }
+  // Inline style that hands a topic's color (and gradient, if any) to the CSS
+  function topicStyle(slug) {
+    return "--topic:" + topicColor(slug) + (TOPIC_PAINT[slug] ? ";--topic-paint:" + TOPIC_PAINT[slug] : "");
+  }
+  function topicPill(c) {
+    return '<a class="pill pill--topic' + (TOPIC_PAINT[c.slug] ? " pill--paint" : "") + '" style="' + topicStyle(c.slug) + '" href="' +
+      esc(homeUrl("cat=" + encodeURIComponent(c.slug))) + '#posts">' + esc(c.name) + "</a>";
+  }
   function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
   function initials(name) {
     return String(name || "?").split(/\s+/).filter(Boolean).slice(0, 2).map(function (w) { return w[0]; }).join("").toUpperCase();
@@ -284,22 +315,19 @@
     return '<span class="avatar' + (cls ? " " + cls : "") + '" data-tone="' + a.tone + '" aria-hidden="true">' + esc(a.initials) + "</span>";
   }
 
-  function catPills(p) {
-    return p.cats.map(function (c) {
-      return '<a class="pill pill--accent" href="' + esc(homeUrl("cat=" + encodeURIComponent(c.slug))) + '#posts">' + esc(c.name) + "</a>";
-    }).join("");
-  }
+  function catPills(p) { return p.cats.map(topicPill).join(""); }
 
   function card(p) {
     var a = p.author;
     return (
-      '<article class="card">' +
+      '<article class="card" style="' + topicStyle(p.cats[0] && p.cats[0].slug) + '">' +
         '<a class="card-media" href="' + esc(postUrl(p.slug)) + '" tabindex="-1" aria-hidden="true">' +
           (p.cover ? '<img src="' + esc(p.cover) + '" alt="' + esc(p.coverAlt) + '" loading="lazy" width="800" height="500">' : "") +
         "</a>" +
         '<div class="card-body">' +
           '<h3 class="card-title"><a href="' + esc(postUrl(p.slug)) + '">' + esc(p.title) + "</a></h3>" +
-          '<div class="card-meta">' + esc(a.name) + " · " + esc(fmt(p.date)) + " · " + esc(p.read) + " min read</div>" +
+          '<div class="card-meta"><span>' + esc(a.name) + " · " + esc(fmtShort(p.date)) + "</span>" +
+            '<span class="card-read">' + esc(p.read) + " min read</span></div>" +
           '<p class="card-excerpt">' + esc(p.excerpt) + "</p>" +
           '<div class="card-tags">' + catPills(p) + "</div>" +
         "</div>" +
@@ -421,6 +449,7 @@
       title.textContent = t ? t.name : (state.q ? "Search results" : "Latest stories");
     }
     markActiveNav();
+    renderTopicRows();
 
     data.posts({ q: state.q, cat: state.cat, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
       if (mine !== gridRequest) return; // a newer request superseded this one
@@ -436,6 +465,7 @@
         lead.classList.add("card--feature");
         var img = lead.querySelector("img"); if (img) img.removeAttribute("loading");
       }
+      fillLastRow();
       renderPagination(res);
     }).catch(function () {
       grid.innerHTML = '<div class="empty">Stories could not be loaded. Please try again later.</div>';
@@ -448,6 +478,51 @@
       var m = /[?&]cat=([^&#]+)/.exec(a.getAttribute("href"));
       var on = m ? slugify(decodeURIComponent(m[1])) === state.cat : !state.cat;
       if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+  }
+
+  // When the last grid row is short, fill the gap with a "Browse by topic" tile
+  function fillLastRow() {
+    var grid = document.getElementById("post-grid");
+    if (!grid || !grid.hasAttribute("data-home") || grid.hasAttribute("aria-busy")) return;
+    var old = grid.querySelector(".card--more"); if (old) old.remove();
+    var cards = grid.querySelectorAll(".card:not(.is-loading)");
+    var cols = getComputedStyle(grid).gridTemplateColumns.split(" ").length;
+    var topics = topicsCache.filter(function (t) { return t.count > 0; });
+    if (!cards.length || cols < 2 || !topics.length) return;
+    var cells = cards.length + (grid.querySelector(".card--feature") ? cols - 1 : 0);
+    var gap = (cols - cells % cols) % cols;
+    if (!gap) return;
+    var tile = document.createElement("aside");
+    tile.className = "card card--more";
+    tile.style.gridColumn = "span " + gap;
+    tile.innerHTML = '<div class="card-body"><span class="more-label">Keep exploring</span>' +
+      '<h3 class="card-title">Browse by topic</h3><div class="card-tags">' + topics.map(topicPill).join("") + "</div></div>";
+    grid.appendChild(tile);
+  }
+
+  // Default view only: a few busy topics, each with its latest stories
+  function renderTopicRows() {
+    var section = document.getElementById("topic-rows"), mount = document.getElementById("rows-grid");
+    if (!section || !mount) return;
+    if (state.cat || state.q || state.page > 1 || !topicsCache.length) { section.hidden = true; return; }
+    data.posts({ pageSize: 100 }).then(function (res) {
+      var picks = topicsCache.filter(function (t) { return t.count > 1; })
+        .sort(function (a, b) { return b.count - a.count; }).slice(0, 3);
+      if (!picks.length) { section.hidden = true; return; }
+      mount.innerHTML = picks.map(function (t) {
+        var items = res.items.filter(function (p) { return p.cats.some(function (c) { return c.slug === t.slug; }); }).slice(0, 4);
+        return '<div class="row-col" style="' + topicStyle(t.slug) + '">' +
+          '<div class="row-head"><h3>' + esc(t.name) + '</h3><a class="link-arrow" href="' +
+            esc(homeUrl("cat=" + encodeURIComponent(t.slug))) + '#posts">See all →</a></div>' +
+          items.map(function (p) {
+            return '<a class="row-item" href="' + esc(postUrl(p.slug)) + '">' +
+              (p.cover ? '<img src="' + esc(p.cover) + '" alt="" loading="lazy" width="72" height="72">' : "") +
+              '<span><span class="row-title">' + esc(p.title) + '</span><span class="row-meta">' +
+              esc(fmtShort(p.date)) + " · " + esc(p.read) + " min read</span></span></a>";
+          }).join("") + "</div>";
+      }).join("");
+      section.hidden = false;
     });
   }
 
@@ -465,8 +540,11 @@
     }
 
     loadGrid();
+    window.addEventListener("resize", debounce(fillLastRow, 150));
     data.topics().then(function (topics) {
       topicsCache = topics;
+      fillLastRow();
+      renderTopicRows();
       var title = document.getElementById("posts-title");
       var t = topics.filter(function (x) { return x.slug === state.cat; })[0];
       if (title && t) title.textContent = t.name;
@@ -476,6 +554,27 @@
   /* ======================================================================
      Single post
      ====================================================================== */
+  // Thin bar under the header that fills as you read the story
+  function initReadProgress(article) {
+    var header = document.querySelector(".site-header");
+    if (!header || document.getElementById("read-progress")) return;
+    var bar = document.createElement("div");
+    bar.id = "read-progress"; bar.className = "read-progress"; bar.setAttribute("aria-hidden", "true");
+    bar.setAttribute("style", article.getAttribute("style") || "");
+    header.appendChild(bar);
+    var ticking = false;
+    function update() {
+      ticking = false;
+      var r = article.getBoundingClientRect();
+      var total = r.height - innerHeight + header.offsetHeight;
+      var done = total > 0 ? Math.min(Math.max((header.offsetHeight - r.top) / total, 0), 1) : 1;
+      bar.style.transform = "scaleX(" + done + ")";
+    }
+    addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+    addEventListener("resize", update);
+    update();
+  }
+
   function initPost() {
     var mount = document.getElementById("post");
     var slug = params.get("slug");
@@ -495,6 +594,8 @@
       }
       var a = p.author;
       document.title = p.title + " — Master of None";
+      mount.setAttribute("style", topicStyle(p.cats[0] && p.cats[0].slug));
+      initReadProgress(mount);
       mount.innerHTML =
         '<header class="post-hero"><div class="container">' +
           '<div class="card-top">' + catPills(p) + '<span class="read-time">' + esc(p.read) + " min read</span></div>" +
@@ -522,6 +623,31 @@
       }).then(function (items) { grid.innerHTML = items.map(card).join(""); });
     }).catch(function () {
       mount.innerHTML = '<header class="post-hero"><div class="container"><h1>Something went wrong</h1><p class="lede">This story could not be loaded.</p></div></header>';
+    });
+  }
+
+  /* ======================================================================
+     Top bar: today's date + a scrolling "Top stories" ticker
+     ====================================================================== */
+  function initTopbar() {
+    var today = document.getElementById("today");
+    if (today) today.textContent = new Date().toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" });
+    var track = document.getElementById("ticker");
+    if (!track) return;
+    data.posts({ pageSize: 6 }).then(function (res) {
+      if (!res.items.length) return;
+      var list = function (hidden) {
+        return res.items.map(function (p) {
+          return '<a href="' + esc(postUrl(p.slug)) + '"' + (hidden ? ' tabindex="-1"' : "") + ">" + esc(p.title) + "</a>";
+        }).join("");
+      };
+      // Two copies so the loop is seamless; the copy is hidden from screen readers
+      track.innerHTML = '<div class="ticker-set">' + list(false) + '</div><div class="ticker-set" aria-hidden="true">' + list(true) + "</div>";
+      var dur = Math.max(track.firstChild.offsetWidth / 45, 20); // ~45px per second
+      track.style.animationDuration = dur + "s";
+      // Phase comes from the clock, so the ticker doesn't jump back when you change pages
+      track.style.animationDelay = -((Date.now() / 1000) % dur) + "s";
+      track.classList.add("is-running");
     });
   }
 
@@ -634,6 +760,7 @@
     }
 
     var y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
+    initTopbar();
 
     data.site().then(applySite);
     if (document.getElementById("post")) initPost();
