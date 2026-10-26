@@ -208,8 +208,8 @@
       "This is sample content. Connect Strapi in assets/js/config.js, or add a body array to this post in assets/js/posts.js."];
     return {
       slug: p.slug, title: p.title, excerpt: p.excerpt,
-      cover: p.cover || "assets/img/covers/" + p.slug + ".jpg",
-      coverLarge: p.cover || "assets/img/covers/" + p.slug + ".jpg",
+      cover: p.cover || "assets/img/covers/" + p.slug + ".svg",
+      coverLarge: p.cover || "assets/img/covers/" + p.slug + ".svg",
       coverAlt: "",
       date: p.date, read: p.read,
       cats: p.cats.map(function (c) { return { name: c, slug: slugify(c) }; }),

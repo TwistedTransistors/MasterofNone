@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <linearGradient id="bg" gradientTransform="rotate(45 .5 .5)">
+    <stop offset="0" stop-color="#f6c3cf"/><stop offset="1" stop-color="#d9839b"/>
+  </linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".42" r=".6">
+    <stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1600" height="1000" fill="url(#bg)"/>
+<rect width="1600" height="1000" fill="url(#glow)"/>
+<circle cx="1220" cy="760" r="150" fill="#fff" opacity="0.25" /><path d="M380 640 C 520 420 640 760 780 540 S 1040 380 1180 600" fill="none" stroke="#3b2a4a" stroke-width="14" stroke-linecap="round"/><path d="M420 700 C 560 560 700 820 860 640" fill="none" stroke="#3b2a4a" stroke-opacity=".35" stroke-width="8" stroke-linecap="round"/><g transform="rotate(-38 980 380)"><rect x="700" y="340" width="520" height="80" rx="6" fill="#ffd36b" opacity="1" /><rect x="700" y="340" width="70" height="80" rx="6" fill="#f08aa6" opacity="1" /><rect x="760" y="340" width="22" height="80" rx="0" fill="#c9c3cf" opacity="1" /><polygon points="1220,340 1320,380 1220,420" fill="#f3dcc0"/><polygon points="1290,368 1320,380 1290,392" fill="#3b2a4a"/></g>
+</svg>

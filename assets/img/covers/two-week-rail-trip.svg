@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice">
+<defs>
+  <linearGradient id="bg" gradientTransform="rotate(90 .5 .5)">
+    <stop offset="0" stop-color="#f6a35b"/><stop offset="1" stop-color="#d9604a"/>
+  </linearGradient>
+  <radialGradient id="glow" cx=".5" cy=".42" r=".6">
+    <stop offset="0" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#fff" stop-opacity="0"/>
+  </radialGradient>
+</defs>
+<rect width="1600" height="1000" fill="url(#bg)"/>
+<rect width="1600" height="1000" fill="url(#glow)"/>
+<circle cx="800" cy="420" r="190" fill="#ffe2a8" opacity="1" /><rect x="0" y="520" width="1600" height="480" rx="0" fill="#3b3f5c" opacity="1" /><rect x="770.0" y="540.0" width="60.0" height="6.0" fill="#8a6b52"/><rect x="705.0" y="550.8942128217935" width="190.0" height="8.75" fill="#8a6b52"/><rect x="640.0" y="577.9358524347207" width="320.0" height="11.5" fill="#8a6b52"/><rect x="575.0" y="618.7071367324335" width="450.0" height="14.25" fill="#8a6b52"/><rect x="510.0" y="672.100310824659" width="580.0" height="17.0" fill="#8a6b52"/><rect x="445.0" y="737.397597625318" width="710.0" height="19.75" fill="#8a6b52"/><rect x="380.0" y="814.0741688713802" width="840.0" height="22.5" fill="#8a6b52"/><rect x="315.0" y="901.719837546781" width="970.0" height="25.25" fill="#8a6b52"/><rect x="250.0" y="1000.0" width="1100.0" height="28.0" fill="#8a6b52"/><polygon points="790,520 810,520 1330,1000 1270,1000" fill="#d9d4cc"/><polygon points="790,520 810,520 330,1000 270,1000" fill="#d9d4cc"/><rect x="0" y="505" width="1600" height="18" rx="0" fill="#2c2f47" opacity="1" />
+</svg>
