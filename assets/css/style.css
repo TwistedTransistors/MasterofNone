@@ -211,7 +211,7 @@ kbd, .kbd {
 .story-tag {
   position: absolute; top: 10px; left: 10px;
   font-family: var(--font-mono); font-size: 11px;
-  padding: 2px 7px; border-radius: 3px;
+  padding: 4px 9px; border-radius: 3px;
   background: var(--bg); color: var(--fg); border: 1px solid var(--line-strong);
 }
 

@@ -1,0 +1,35 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "side-tab",
+        "value": "*",
+        "files": [
+          "assets/css/style.css"
+        ],
+        "createdAt": "2026-10-26T08:19:45.409Z",
+        "reason": "Claude: L278 is a 2px blockquote rule on body text, not a card accent"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-10-26T08:19:45.421Z",
+        "reason": "Claude: thicker bottom border on kbd chips is deliberate keycap styling echoing americancloud.com"
+      },
+      {
+        "rule": "border-accent-on-rounded",
+        "value": "*",
+        "files": [
+          "post.html"
+        ],
+        "createdAt": "2026-10-26T08:19:45.431Z",
+        "reason": "Claude: thicker bottom border on kbd chips is deliberate keycap styling echoing americancloud.com"
+      }
+    ]
+  }
+}
