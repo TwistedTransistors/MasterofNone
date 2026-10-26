@@ -77,3 +77,18 @@ python3 -m http.server
 It also works as-is on GitHub Pages (Settings → Pages → deploy from `main`).
 
 Placeholder cover images come from picsum.photos. Replace them with your own.
+
+---
+
+## Second theme: `revision/`
+
+A softer, magazine-style variant inspired by the Revision theme's Full Grid homepage. Open `revision/index.html`.
+
+- Announcement bar, sticky header with pill nav, dark-mode toggle
+- Centered hero with a live **search** box and **topic chips** that filter the grid
+- "Explore trending topics" row of 8 round image tiles (scrolls sideways on phones)
+- **4-column post grid** (12 posts): rounded cover, category pills, read time, title, description, author avatar + date
+- Pagination, rounded newsletter card, 4-column footer
+- `post.html?slug=…` story page with author box and "You might also like"
+
+Edit content in `revision/assets/js/posts.js` (topics, authors, posts). Font: Manrope.
