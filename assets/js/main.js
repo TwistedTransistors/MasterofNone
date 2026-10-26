@@ -382,37 +382,6 @@
     history.replaceState(null, "", location.pathname + (s ? "?" + s : "") + location.hash);
   }
 
-  function renderTopics(topics) {
-    var el = document.getElementById("topics");
-    if (!el) return;
-    el.innerHTML = topics.map(function (t) {
-      return '<a class="topic" href="' + esc(homeUrl("cat=" + encodeURIComponent(t.slug))) + '#posts" data-cat="' + esc(t.slug) + '">' +
-        (t.image ? '<img src="' + esc(t.image) + '" alt="" loading="lazy" width="72" height="72">' : '<span class="topic-ph"></span>') +
-        '<span class="topic-name">' + esc(t.name) + "</span>" +
-        '<span class="topic-count">' + t.count + (t.count === 1 ? " post" : " posts") + "</span></a>";
-    }).join("");
-    el.onclick = function (e) {
-      var a = e.target.closest("[data-cat]"); if (!a) return;
-      e.preventDefault(); setCat(a.getAttribute("data-cat"));
-      document.getElementById("posts").scrollIntoView();
-    };
-  }
-
-  function renderChips() {
-    var el = document.getElementById("chips");
-    if (!el) return;
-    var all = [{ name: "All", slug: "" }].concat(topicsCache);
-    el.innerHTML = '<span class="chips-label">What are you looking for?</span>' + all.map(function (c) {
-      return '<button type="button" class="pill" data-chip="' + esc(c.slug) + '" aria-pressed="' + (state.cat === c.slug) + '">' + esc(c.name) + "</button>";
-    }).join("");
-    el.onclick = function (e) {
-      var b = e.target.closest("[data-chip]"); if (!b) return;
-      setCat(b.getAttribute("data-chip"));
-    };
-  }
-
-  function setCat(slug) { state.cat = slug; state.page = 1; renderChips(); loadGrid(); }
-
   function renderPagination(res) {
     var nav = document.getElementById("pagination");
     if (!nav) return;
@@ -478,10 +447,9 @@
       });
     }
 
-    renderChips();
     loadGrid();
     data.topics().then(function (topics) {
-      topicsCache = topics; renderTopics(topics); renderChips();
+      topicsCache = topics;
       var title = document.getElementById("posts-title");
       var t = topics.filter(function (x) { return x.slug === state.cat; })[0];
       if (title && t) title.textContent = t.name;
