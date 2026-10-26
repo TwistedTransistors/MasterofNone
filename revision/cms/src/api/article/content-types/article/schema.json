@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "articles",
+  "info": {
+    "singularName": "article",
+    "pluralName": "articles",
+    "displayName": "Article",
+    "description": "Blog stories shown in the 4-column grid and on post pages"
+  },
+  "options": { "draftAndPublish": true },
+  "attributes": {
+    "title": { "type": "string", "required": true, "maxLength": 160 },
+    "slug": { "type": "uid", "targetField": "title", "required": true },
+    "excerpt": { "type": "text", "maxLength": 300, "required": true },
+    "cover": { "type": "media", "multiple": false, "allowedTypes": ["images"] },
+    "content": { "type": "blocks" },
+    "readTime": { "type": "integer", "min": 1, "default": 5 },
+    "displayDate": { "type": "date" },
+    "featured": { "type": "boolean", "default": false },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    }
+  }
+}

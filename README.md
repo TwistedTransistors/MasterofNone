@@ -80,15 +80,20 @@ Placeholder cover images come from picsum.photos. Replace them with your own.
 
 ---
 
-## Second theme: `revision/`
+## Second theme: `revision/` (Strapi-ready)
 
-A softer, magazine-style variant inspired by the Revision theme's Full Grid homepage. Open `revision/index.html`.
+A softer, magazine-style variant inspired by the Revision theme's Full Grid homepage, with a Strapi 5 CMS behind it.
 
 - Announcement bar, sticky header with pill nav, dark-mode toggle
-- Centered hero with a live **search** box and **topic chips** that filter the grid
-- "Explore trending topics" row of 8 round image tiles (scrolls sideways on phones)
-- **4-column post grid** (12 posts): rounded cover, category pills, read time, title, description, author avatar + date
-- Pagination, rounded newsletter card, 4-column footer
-- `post.html?slug=…` story page with author box and "You might also like"
+- Centered hero with **search** and **topic chips** that filter the grid
+- "Explore trending topics" row of round image tiles (scrolls sideways on phones)
+- **4-column post grid**: cover, topic pills, read time, title, description, author avatar + date
+- Real pagination, newsletter card, 4-column footer
+- `post.html?slug=…` story page with rich text, author box and "You might also like"
 
-Edit content in `revision/assets/js/posts.js` (topics, authors, posts). Font: Manrope.
+### Content source
+
+- **Strapi**: set `strapiUrl` in `revision/assets/js/config.js`. The backend lives in `revision/cms/` with content types, public read access and sample content pre-configured. See [`revision/cms/README.md`](revision/cms/README.md).
+- **No CMS**: leave `strapiUrl` empty and the theme uses `revision/assets/js/posts.js`. It also falls back to this if Strapi is unreachable.
+
+Images in `revision/assets/img/` are generic, license-free placeholder artwork. Font: Manrope.

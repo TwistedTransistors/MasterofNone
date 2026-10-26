@@ -17,7 +17,7 @@
 
   <div class="announce">
     <div class="container">
-      <span><strong>Before you go:</strong> <a href="post.html?slug=two-week-rail-trip">Two weeks by rail with one carry-on bag</a></span>
+      <span><strong data-global="announcementLabel">Before you go:</strong> <a id="announce-link" href="post.html?slug=two-week-rail-trip">Two weeks by rail with one carry-on bag</a></span>
     </div>
   </div>
 
@@ -54,9 +54,9 @@
   <main id="main-content">
     <section class="hero">
       <div class="container">
-        <span class="eyebrow">Master of None</span>
-        <h1>Stories from people who learn a little of everything</h1>
-        <p>Build logs, travel notes, small-business lessons, and the occasional bookshelf. Fresh perspectives from curious generalists.</p>
+        <span class="eyebrow" data-global="eyebrow">Master of None</span>
+        <h1 data-global="heroTitle">Stories from people who learn a little of everything</h1>
+        <p data-global="heroText">Build logs, travel notes, small-business lessons, and the occasional bookshelf. Fresh perspectives from curious generalists.</p>
 
         <form class="search" role="search">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
@@ -93,22 +93,15 @@
         <!-- 4-column grid: cover, category, title, description, author -->
         <div class="post-grid" id="post-grid" data-limit="12" data-home></div>
 
-        <nav class="pagination" id="pagination" aria-label="Posts pagination">
-          <span aria-current="page">1</span>
-          <a href="#">2</a>
-          <a href="#">3</a>
-          <span class="gap">…</span>
-          <a href="#">8</a>
-          <a class="next" href="#">Next →</a>
-        </nav>
+        <nav class="pagination" id="pagination" aria-label="Posts pagination"></nav>
       </div>
     </section>
 
     <section class="container newsletter" id="newsletter" aria-labelledby="newsletter-title">
       <div class="newsletter-card">
         <span class="eyebrow">Newsletter</span>
-        <h2 id="newsletter-title">Subscribe to the newsletter</h2>
-        <p>One email a week with the newest stories and a few good links from around the web.</p>
+        <h2 id="newsletter-title" data-global="newsletterTitle">Subscribe to the newsletter</h2>
+        <p data-global="newsletterText">One email a week with the newest stories and a few good links from around the web.</p>
         <form id="newsletter-form">
           <label for="newsletter-email" class="sr-only">Email address</label>
           <input id="newsletter-email" type="email" placeholder="Your email address" required>
@@ -124,7 +117,7 @@
       <div class="footer-grid">
         <div class="footer-about">
           <a class="logo" href="index.html">Master of None<span>.</span></a>
-          <p>Stories, build logs, and field notes from people who'd rather learn a little of everything than all of one thing.</p>
+          <p data-global="footerText">Stories, build logs, and field notes from people who'd rather learn a little of everything than all of one thing.</p>
           <div class="socials">
             <a href="#" aria-label="RSS feed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 11a9 9 0 0 1 9 9M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1.5" fill="currentColor"/></svg></a>
             <a href="#" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
@@ -164,6 +157,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/config.js"></script>
   <script src="assets/js/posts.js"></script>
   <script src="assets/js/main.js"></script>
 </body>

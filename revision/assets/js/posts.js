@@ -2,7 +2,8 @@
    Content for the "Revision" variant. Edit freely.
    - MON_TOPICS: the 8 round tiles under "Explore trending topics"
    - MON_POSTS:  the post grid (4 per row, 12 per page by default)
-   Cover images are picsum.photos placeholders; replace with your own.
+   Images live in assets/img (generic placeholders). This file is only used
+   when Strapi is not configured in assets/js/config.js.
    ========================================================================== */
 
 window.MON_TOPICS = [

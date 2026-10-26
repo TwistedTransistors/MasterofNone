@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "globals",
+  "info": {
+    "singularName": "global",
+    "pluralName": "globals",
+    "displayName": "Global",
+    "description": "Site-wide text: name, hero, announcement bar, newsletter, footer"
+  },
+  "options": { "draftAndPublish": false },
+  "attributes": {
+    "siteName": { "type": "string", "required": true, "default": "Master of None" },
+    "eyebrow": { "type": "string" },
+    "heroTitle": { "type": "string" },
+    "heroText": { "type": "text" },
+    "announcementLabel": { "type": "string" },
+    "announcementArticle": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::article.article"
+    },
+    "newsletterTitle": { "type": "string" },
+    "newsletterText": { "type": "text" },
+    "footerText": { "type": "text" }
+  }
+}

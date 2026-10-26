@@ -1,0 +1,960 @@
+{
+  "global": {
+    "siteName": "Master of None",
+    "eyebrow": "Master of None",
+    "heroTitle": "Stories from people who learn a little of everything",
+    "heroText": "Build logs, travel notes, small-business lessons, and the occasional bookshelf. Fresh perspectives from curious generalists.",
+    "announcementLabel": "Before you go:",
+    "announcementArticle": "two-week-rail-trip",
+    "newsletterTitle": "Subscribe to the newsletter",
+    "newsletterText": "One email a week with the newest stories and a few good links from around the web.",
+    "footerText": "Stories, build logs, and field notes from people who would rather learn a little of everything than all of one thing."
+  },
+  "authors": [
+    {
+      "key": "eric",
+      "name": "Eric Carrillo",
+      "slug": "eric-carrillo",
+      "role": "Editor",
+      "bio": "Editor of Master of None. Learns a little of everything, writes about most of it.",
+      "avatar": "authors/eric-carrillo.jpg"
+    },
+    {
+      "key": "dana",
+      "name": "Dana Whitfield",
+      "slug": "dana-whitfield",
+      "role": "Contributor",
+      "bio": "Self-hoster, tinkerer, and occasional breaker of production servers.",
+      "avatar": "authors/dana-whitfield.jpg"
+    },
+    {
+      "key": "marcus",
+      "name": "Marcus Lee",
+      "slug": "marcus-lee",
+      "role": "Contributor",
+      "bio": "Weekend woodworker and full-time beginner at most things.",
+      "avatar": "authors/marcus-lee.jpg"
+    },
+    {
+      "key": "priya",
+      "name": "Priya Raman",
+      "slug": "priya-raman",
+      "role": "Contributor",
+      "bio": "Writes about small businesses, travel on a budget, and the people behind both.",
+      "avatar": "authors/priya-raman.jpg"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Technology",
+      "slug": "technology",
+      "order": 0,
+      "image": "topics/technology.jpg",
+      "description": "Stories filed under technology."
+    },
+    {
+      "name": "Travel",
+      "slug": "travel",
+      "order": 1,
+      "image": "topics/travel.jpg",
+      "description": "Stories filed under travel."
+    },
+    {
+      "name": "Business",
+      "slug": "business",
+      "order": 2,
+      "image": "topics/business.jpg",
+      "description": "Stories filed under business."
+    },
+    {
+      "name": "Startups",
+      "slug": "startups",
+      "order": 3,
+      "image": "topics/startups.jpg",
+      "description": "Stories filed under startups."
+    },
+    {
+      "name": "Design",
+      "slug": "design",
+      "order": 4,
+      "image": "topics/design.jpg",
+      "description": "Stories filed under design."
+    },
+    {
+      "name": "Workshop",
+      "slug": "workshop",
+      "order": 5,
+      "image": "topics/workshop.jpg",
+      "description": "Stories filed under workshop."
+    },
+    {
+      "name": "Reading",
+      "slug": "reading",
+      "order": 6,
+      "image": "topics/reading.jpg",
+      "description": "Stories filed under reading."
+    },
+    {
+      "name": "Sport",
+      "slug": "sport",
+      "order": 7,
+      "image": "topics/sport.jpg",
+      "description": "Stories filed under sport."
+    }
+  ],
+  "articles": [
+    {
+      "title": "The case for learning everything a little badly",
+      "slug": "learning-everything-badly",
+      "excerpt": "Specialists go deep, generalists connect the dots. Why being a master of none often beats being a master of one.",
+      "readTime": 6,
+      "displayDate": "2026-10-22",
+      "featured": true,
+      "author": "eric",
+      "categories": [
+        "reading"
+      ],
+      "cover": "covers/learning-everything-badly.jpg",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The full proverb is longer than most people remember: a jack of all trades is a master of none, but oftentimes better than a master of one."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Breadth is a skill"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Knowing a little about a lot is a different kind of expertise: recognizing patterns across fields and borrowing solutions from one to fix problems in another."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "Depth tells you how. Breadth tells you where to look."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Start badly, on purpose"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every new thing you pick up will be clumsy at first. Pay that price often enough and you stop being afraid of being a beginner."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "I self-hosted my whole stack in a weekend",
+      "slug": "self-hosting-weekend",
+      "excerpt": "One VM, a reverse proxy, and a lot of coffee. What went right, what broke at 2 a.m., and what I'd change.",
+      "readTime": 9,
+      "displayDate": "2026-10-18",
+      "featured": false,
+      "author": "dana",
+      "categories": [
+        "technology"
+      ],
+      "cover": "covers/self-hosting-weekend.jpg",
+      "content": [
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Friday night I had three subscriptions and no idea where my data lived. By Sunday I had one server and a plan."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "The setup"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "A single virtual machine, Docker Compose, and a reverse proxy handling HTTPS."
+            }
+          ]
+        },
+        {
+          "type": "code",
+          "children": [
+            {
+              "type": "text",
+              "text": "$ docker compose up -d"
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What broke"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "DNS, of course. It is always DNS."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Workshop notes from a first-time woodworker",
+      "slug": "first-bookshelf",
+      "excerpt": "Measure twice, cut once, then cut again because you measured wrong both times. Lessons from one bookshelf.",
+      "readTime": 5,
+      "displayDate": "2026-10-15",
+      "featured": false,
+      "author": "marcus",
+      "categories": [
+        "workshop"
+      ],
+      "cover": "covers/first-bookshelf.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Two weeks by rail with one carry-on bag",
+      "slug": "two-week-rail-trip",
+      "excerpt": "Eleven trains, four countries, and the short packing list that actually survived the trip.",
+      "readTime": 7,
+      "displayDate": "2026-10-12",
+      "featured": false,
+      "author": "priya",
+      "categories": [
+        "travel"
+      ],
+      "cover": "covers/two-week-rail-trip.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "From side project to first $1,000 in revenue",
+      "slug": "side-project-to-revenue",
+      "excerpt": "No launch, no ads, no audience. Just a small tool, a handful of forums, and a lot of honest emails.",
+      "readTime": 8,
+      "displayDate": "2026-10-09",
+      "featured": false,
+      "author": "eric",
+      "categories": [
+        "startups",
+        "business"
+      ],
+      "cover": "covers/side-project-to-revenue.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Typography for people who aren't designers",
+      "slug": "typography-for-non-designers",
+      "excerpt": "Three rules that fix most ugly documents: pick fewer fonts, add more space, and stop centering everything.",
+      "readTime": 4,
+      "displayDate": "2026-10-06",
+      "featured": false,
+      "author": "marcus",
+      "categories": [
+        "design"
+      ],
+      "cover": "covers/typography-for-non-designers.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "What training for a first half marathon taught me",
+      "slug": "running-a-first-half",
+      "excerpt": "Slow runs, boring consistency, and why the plan matters less than simply showing up four times a week.",
+      "readTime": 6,
+      "displayDate": "2026-10-03",
+      "featured": false,
+      "author": "priya",
+      "categories": [
+        "sport"
+      ],
+      "cover": "covers/running-a-first-half.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "A fall reading list for curious generalists",
+      "slug": "fall-reading-list",
+      "excerpt": "History, systems thinking, a little physics, and one cookbook. Eight books from very different shelves.",
+      "readTime": 4,
+      "displayDate": "2026-09-30",
+      "featured": false,
+      "author": "eric",
+      "categories": [
+        "reading"
+      ],
+      "cover": "covers/fall-reading-list.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Rebuilding my home network from scratch",
+      "slug": "home-network-rebuild",
+      "excerpt": "VLANs, a cheap managed switch, and finally getting the smart plugs off the same network as my laptop.",
+      "readTime": 10,
+      "displayDate": "2026-09-26",
+      "featured": false,
+      "author": "dana",
+      "categories": [
+        "technology"
+      ],
+      "cover": "covers/home-network-rebuild.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "How to price a small service business",
+      "slug": "pricing-small-services",
+      "excerpt": "Hourly is a trap, value pricing is hard, and the right answer is usually somewhere awkwardly in between.",
+      "readTime": 7,
+      "displayDate": "2026-09-22",
+      "featured": false,
+      "author": "priya",
+      "categories": [
+        "business"
+      ],
+      "cover": "covers/pricing-small-services.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Thirty days of sketching for ten minutes a day",
+      "slug": "sketching-every-day",
+      "excerpt": "I can't draw. I still can't draw. But I see shapes, light, and proportion very differently now.",
+      "readTime": 5,
+      "displayDate": "2026-09-18",
+      "featured": false,
+      "author": "marcus",
+      "categories": [
+        "design"
+      ],
+      "cover": "covers/sketching-every-day.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "A slow weekend in the Texas Hill Country",
+      "slug": "weekend-in-the-hill-country",
+      "excerpt": "Swimming holes, small-town bakeries, and a two-lane road with no reason to hurry anywhere.",
+      "readTime": 6,
+      "displayDate": "2026-09-14",
+      "featured": false,
+      "author": "eric",
+      "categories": [
+        "travel"
+      ],
+      "cover": "covers/weekend-in-the-hill-country.jpg",
+      "content": [
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "Where it started"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "Every project on this blog starts the same way: curiosity, a little too much confidence, and no real plan. This one was no different."
+            }
+          ]
+        },
+        {
+          "type": "heading",
+          "level": 2,
+          "children": [
+            {
+              "type": "text",
+              "text": "What I learned"
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "The details will be different for you, but the pattern holds. Start small, write things down, and expect the first attempt to be the practice run."
+            }
+          ]
+        },
+        {
+          "type": "quote",
+          "children": [
+            {
+              "type": "text",
+              "text": "You do not need to be an expert to begin. You become one, a little, by beginning."
+            }
+          ]
+        },
+        {
+          "type": "paragraph",
+          "children": [
+            {
+              "type": "text",
+              "text": "This is sample content seeded into Strapi. Edit it in the admin panel under Content Manager \u2192 Article."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
