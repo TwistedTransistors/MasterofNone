@@ -57,10 +57,10 @@
   }
   // Each topic gets its own color (card stripe, tags, topic rows). Unknown
   // topics get a stable color from the fallback list.
-  var TOPIC_COLORS = { bombastic: "#d62828", "smug-mugs": "#1fa64a", "go-woke-go-broke": "#8e24aa" };
+  var TOPIC_COLORS = { bombastic: "#d62828", "smug-mugs": "#1fa64a", "go-woke-go-broke": "#9b7fd4" };
   // Optional gradient "paint" for topics that aren't a single color
   var TOPIC_PAINT = {
-    "go-woke-go-broke": "linear-gradient(90deg, #e53935, #fb8c00, #fdd835, #43a047, #1e88e5, #8e24aa)"
+    "go-woke-go-broke": "linear-gradient(90deg, #ffadad, #ffd6a5, #fdffb6, #caffbf, #9bf6ff, #a0c4ff, #bdb2ff)"
   };
   var TOPIC_FALLBACK = ["#2f6fdb", "#e0752d", "#2f8a57", "#7a4fe0", "#d6336c", "#1f9a8a"];
   function topicColor(slug) {

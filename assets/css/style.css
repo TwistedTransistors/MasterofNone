@@ -104,7 +104,8 @@ button, input { font: inherit; color: inherit; }
 /* Topic tags: tinted with the topic's own color (set as --topic in main.js) */
 .pill--topic { --topic-ink: color-mix(in srgb, var(--topic) 70%, #000); background: color-mix(in srgb, var(--topic) 13%, transparent); color: var(--topic-ink); }
 .pill--topic:hover { background: var(--topic); color: #fff; }
-.pill--topic.pill--paint, .pill--topic.pill--paint:hover { background: var(--topic-paint); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.45); }
+/* Light (pastel) gradients get dark text so the label stays readable */
+.pill--topic.pill--paint, .pill--topic.pill--paint:hover { background: var(--topic-paint); color: #2a2633; }
 .pill--topic.pill--paint:hover { filter: saturate(1.25) brightness(1.05); }
 :root[data-theme="dark"] .pill--topic { --topic-ink: color-mix(in srgb, var(--topic) 55%, #fff); background: color-mix(in srgb, var(--topic) 22%, transparent); }
 @media (prefers-color-scheme: dark) {
