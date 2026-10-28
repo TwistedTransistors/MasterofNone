@@ -1,7 +1,7 @@
 {
   "global": {
-    "siteName": "Master of None",
-    "eyebrow": "Master of None",
+    "siteName": "GoDeportYourself.com",
+    "eyebrow": "GoDeportYourself.com",
     "heroTitle": "Stories from people who learn a little of everything",
     "heroText": "Build logs, travel notes, small-business lessons, and the occasional bookshelf. Fresh perspectives from curious generalists.",
     "announcementLabel": "Before you go:",
@@ -16,7 +16,7 @@
       "name": "Eric Carrillo",
       "slug": "eric-carrillo",
       "role": "Editor",
-      "bio": "Editor of Master of None. Learns a little of everything, writes about most of it.",
+      "bio": "Editor of GoDeportYourself.com. Learns a little of everything, writes about most of it.",
       "avatar": "authors/eric-carrillo.jpg"
     },
     {

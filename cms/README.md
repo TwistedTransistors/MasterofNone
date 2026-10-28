@@ -1,4 +1,4 @@
-# Master of None CMS (Strapi 5)
+# GoDeportYourself.com CMS (Strapi 5)
 
 The Strapi backend for the **Revision** theme in the repo root (`../`). It ships with content types that match the theme and seeds sample authors, topics, articles and generic placeholder images on first start.
 

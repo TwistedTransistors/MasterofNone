@@ -14,7 +14,7 @@ window.MON_TOPICS = [
 ];
 
 window.MON_AUTHORS = {
-  eric:   { name: "Eric Carrillo",  initials: "EC", tone: 0, bio: "Editor of Master of None. Learns a little of everything, writes about most of it." },
+  eric:   { name: "Eric Carrillo",  initials: "EC", tone: 0, bio: "Editor of GoDeportYourself.com. Learns a little of everything, writes about most of it." },
   dana:   { name: "Dana Whitfield", initials: "DW", tone: 1, bio: "Self-hoster, tinkerer, and occasional breaker of production servers." },
   marcus: { name: "Marcus Lee",     initials: "ML", tone: 2, bio: "Weekend woodworker and full-time beginner at most things." },
   priya:  { name: "Priya Raman",    initials: "PR", tone: 3, bio: "Writes about small businesses, travel on a budget, and the people behind both." }

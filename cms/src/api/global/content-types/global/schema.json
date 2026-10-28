@@ -9,7 +9,7 @@
   },
   "options": { "draftAndPublish": false },
   "attributes": {
-    "siteName": { "type": "string", "required": true, "default": "Master of None" },
+    "siteName": { "type": "string", "required": true, "default": "GoDeportYourself.com" },
     "eyebrow": { "type": "string" },
     "heroTitle": { "type": "string" },
     "heroText": { "type": "text" },

@@ -1,5 +1,5 @@
 /* ==========================================================================
-   Master of None — "Revision" variant
+   GoDeportYourself.com
    --------------------------------------------------------------------------
    Data comes from Strapi when MON_CONFIG.strapiUrl is set (see config.js),
    otherwise from the local sample content in posts.js. Both sources are
@@ -610,7 +610,7 @@
         return;
       }
       var a = p.author;
-      document.title = p.title + " — Master of None";
+      document.title = p.title + " — GoDeportYourself.com";
       mount.setAttribute("style", topicStyle(p.cats[0] && p.cats[0].slug));
       initReadProgress(mount);
       mount.innerHTML =

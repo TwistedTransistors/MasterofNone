@@ -2,7 +2,7 @@
   "name": "masterofnone-cms",
   "private": true,
   "version": "0.1.0",
-  "description": "Strapi CMS for the Master of None \"Revision\" blog theme",
+  "description": "Strapi CMS for GoDeportYourself.com",
   "scripts": {
     "develop": "strapi develop",
     "dev": "strapi develop",
