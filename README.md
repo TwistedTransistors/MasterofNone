@@ -55,7 +55,7 @@ Images in `assets/img/` are generic, license-free placeholder artwork. Replace t
 
 ## Publishing updates
 
-The pages load the CSS and JS with a version tag (`style.css?v=20261026d`). When you
+The pages load the CSS and JS with a version tag (`style.css?v=20261028b`). When you
 change any file in `assets/css` or `assets/js`, bump that tag in `index.html`,
 `post.html` and `contact.html` so visitors' browsers fetch the new files instead of
 showing a cached copy.

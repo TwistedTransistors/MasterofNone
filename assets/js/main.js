@@ -442,16 +442,13 @@
     grid.innerHTML = skeleton(4);
     syncUrl();
 
-    var title = document.getElementById("posts-title");
-    if (title) {
-      var t = topicsCache.filter(function (x) { return x.slug === state.cat; })[0];
-      title.textContent = t ? t.name : (state.q ? "Search results" : "Latest stories");
-    }
+    setHeading();
     markActiveNav();
     renderTopicRows();
 
     data.posts({ q: state.q, cat: state.cat, page: state.page, pageSize: PAGE_SIZE }).then(function (res) {
       if (mine !== gridRequest) return; // a newer request superseded this one
+      setHeading(res.total != null ? res.total : res.items.length);
       grid.removeAttribute("aria-busy");
       grid.innerHTML = res.items.length ? res.items.map(card).join("")
         : '<div class="empty">' + (state.cat && !state.q
@@ -478,6 +475,29 @@
       var on = m ? slugify(decodeURIComponent(m[1])) === state.cat : !state.cat;
       if (on) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
     });
+  }
+
+  // Heading above the grid. Section pages (?cat=) get the section's color, a story
+  // count, and the image grid (post-grid--section); search shows a result count.
+  var defaultSub = null, lastTotal = null;
+  function setHeading(total) {
+    var title = document.getElementById("posts-title"), sub = document.getElementById("posts-sub");
+    var grid = document.getElementById("post-grid");
+    if (!title) return;
+    if (defaultSub === null) defaultSub = sub ? sub.textContent : "";
+    if (total != null) lastTotal = total;
+    var t = topicsCache.filter(function (x) { return x.slug === state.cat; })[0];
+    title.textContent = t ? t.name : (state.q ? "Search results" : "Latest stories");
+    if (sub) {
+      if (!state.cat && !state.q) sub.textContent = defaultSub;
+      else sub.textContent = total == null ? "" : total + (state.q ? (total === 1 ? " result" : " results") : (total === 1 ? " story" : " stories"));
+    }
+    var head = title.closest(".section-head");
+    if (head) {
+      head.classList.toggle("is-section", !!state.cat);
+      if (state.cat) head.setAttribute("style", topicStyle(state.cat)); else head.removeAttribute("style");
+    }
+    if (grid) grid.classList.toggle("post-grid--section", !!state.cat && !state.q);
   }
 
   // When the last grid row is short, fill the gap with a "Browse by topic" tile
@@ -542,11 +562,9 @@
     window.addEventListener("resize", debounce(fillLastRow, 150));
     data.topics().then(function (topics) {
       topicsCache = topics;
+      setHeading(lastTotal);
       fillLastRow();
       renderTopicRows();
-      var title = document.getElementById("posts-title");
-      var t = topics.filter(function (x) { return x.slug === state.cat; })[0];
-      if (title && t) title.textContent = t.name;
     });
   }
 
