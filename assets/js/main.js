@@ -326,7 +326,7 @@
         '<div class="card-body">' +
           '<h3 class="card-title"><a href="' + esc(postUrl(p.slug)) + '">' + esc(p.title) + "</a></h3>" +
           '<div class="card-meta"><span>' + esc(a.name) + " · " + esc(fmtShort(p.date)) + "</span>" +
-            '<span class="card-read">' + esc(p.read) + " min read</span></div>" +
+            '<span class="card-read">External read</span></div>' +
           '<p class="card-excerpt">' + esc(p.excerpt) + "</p>" +
           '<div class="card-tags">' + catPills(p) + "</div>" +
         "</div>" +
@@ -538,7 +538,7 @@
             return '<a class="row-item" href="' + esc(postUrl(p.slug)) + '">' +
               (p.cover ? '<img src="' + esc(p.cover) + '" alt="" loading="lazy" width="72" height="72">' : "") +
               '<span><span class="row-title">' + esc(p.title) + '</span><span class="row-meta">' +
-              esc(fmtShort(p.date)) + " · " + esc(p.read) + " min read</span></span></a>";
+              esc(fmtShort(p.date)) + " · External read</span></span></a>";
           }).join("") + "</div>";
       }).join("");
       section.hidden = false;
@@ -615,7 +615,7 @@
       initReadProgress(mount);
       mount.innerHTML =
         '<header class="post-hero"><div class="container">' +
-          '<div class="card-top">' + catPills(p) + '<span class="read-time">' + esc(p.read) + " min read</span></div>" +
+          '<div class="card-top">' + catPills(p) + '<span class="read-time">External read</span></div>' +
           "<h1>" + esc(p.title) + "</h1>" +
           '<p class="lede">' + esc(p.excerpt) + "</p>" +
           '<div class="byline">' + avatar(a) + '<div><div class="byline-name">' + esc(a.name) + '</div><div class="byline-date">' + esc(fmt(p.date)) + "</div></div></div>" +
