@@ -75,7 +75,7 @@
   }
   function topicPill(c) {
     return '<a class="pill pill--topic' + (TOPIC_PAINT[c.slug] ? " pill--paint" : "") + '" style="' + topicStyle(c.slug) + '" href="' +
-      esc(homeUrl("cat=" + encodeURIComponent(c.slug))) + '#posts">' + esc(c.name) + "</a>";
+      esc(homeUrl("cat=" + encodeURIComponent(c.slug))) + '">' + esc(c.name) + "</a>";
   }
   function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
   function initials(name) {
@@ -533,7 +533,7 @@
         var items = res.items.filter(function (p) { return p.cats.some(function (c) { return c.slug === t.slug; }); }).slice(0, 4);
         return '<div class="row-col" style="' + topicStyle(t.slug) + '">' +
           '<div class="row-head"><h3>' + esc(t.name) + '</h3><a class="link-arrow" href="' +
-            esc(homeUrl("cat=" + encodeURIComponent(t.slug))) + '#posts">See all →</a></div>' +
+            esc(homeUrl("cat=" + encodeURIComponent(t.slug))) + '">See all →</a></div>' +
           items.map(function (p) {
             return '<a class="row-item" href="' + esc(postUrl(p.slug)) + '">' +
               (p.cover ? '<img src="' + esc(p.cover) + '" alt="" loading="lazy" width="72" height="72">' : "") +
